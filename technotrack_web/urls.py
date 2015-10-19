@@ -14,19 +14,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
 from django.conf.urls import include, url
+from django.views.generic import TemplateView
 from django.contrib import admin
 from . import hello_world_view
 from . import index_view
 from . import views
+from . import templates
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^template/', templates.Index.as_view()),
     url(r'^hw/', hello_world_view.index, name='index'),
-    url(r'^$',  index_view.index, name='index'),
-    url(r'^question/',  views.question, name='question'),
-    url(r'^new_question/',  views.new_question, name='new_question'),
-    url(r'^settings/',  views.settings, name='settings'),
-    url(r'^login/',  views.login, name='login'),
-    url(r'^search/',  views.search, name='search'),
-    url(r'^registration',  views.registration, name='registration'),
+    url(r'^$', index_view.index, name='index'),
+    url(r'^question/', views.question, name='question'),
+    url(r'^new_question/', views.new_question, name='new_question'),
+    url(r'^settings/', views.settings, name='settings'),
+    url(r'^login/', views.login, name='login'),
+    url(r'^search/', views.search, name='search'),
+    url(r'^registration', views.registration, name='registration'),
 ]

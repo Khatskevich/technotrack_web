@@ -52,10 +52,11 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'technotrack_web.urls'
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["/home/lesaha/git/technotrack_web/technotrack_web/"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -67,6 +68,8 @@ TEMPLATES = [
         },
     },
 ]
+
+
 
 WSGI_APPLICATION = 'technotrack_web.wsgi.application'
 
