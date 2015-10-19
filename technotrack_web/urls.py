@@ -21,6 +21,7 @@ from . import views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^hw/', hello_world_view.index, name='index'),
     url(r'^$',  index_view.index, name='index'),
     url(r'^question/',  views.question, name='question'),
     url(r'^new_question/',  views.new_question, name='new_question'),
