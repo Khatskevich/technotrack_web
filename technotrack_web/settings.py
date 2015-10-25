@@ -103,3 +103,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/var/www/technotrack_web/collected_static/'
+STATICFILES_DIRS = ('/var/www/technotrack_web/src/static/', )
