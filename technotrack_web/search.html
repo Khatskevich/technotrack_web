@@ -18,24 +18,24 @@
 <body>
 
 <div class="container-fluid">
-<nav class="navbar navbar-default ">
-    <div class="container">
-        <div class="navbar-header">
-            <!-- The mobile navbar-toggle button can be safely removed since you do not need it in a non-responsive implementation -->
-            <a class="navbar-brand" href="#">AskPupkin</a>
-        </div>
-        <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
-                <button type="submit" class="btn btn-default">Submit</button>
+    <nav class="navbar navbar-default ">
+        <div class="container">
+            <div class="navbar-header">
+                <!-- The mobile navbar-toggle button can be safely removed since you do not need it in a non-responsive implementation -->
+                <a class="navbar-brand" href="#">AskPupkin</a>
             </div>
-        </form>
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Log in</a></li>
-            <li><a href="#">Register</a></li>
-        </ul>
-    </div>
-</nav>
+            <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </div>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Log in</a></li>
+                <li><a href="#">Register</a></li>
+            </ul>
+        </div>
+    </nav>
 </div>
 
 <div class="container">
@@ -46,6 +46,7 @@
             <div class="row">
                 <form class="navbar-form" role="form">
                     <h2>Search: moon is real</h2>
+
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="moon is real">
                         <button type="submit" class="btn btn-default">Submit</button>
@@ -65,7 +66,11 @@
                                     <img class="img-responsive" src="http://localhost/1.jpg" alt="avatar">
                                 </div>
                                 <div>
-                                    counter
+                                                        <span>
+                        <img src="http://localhost/like.png" height="22" width="22" alt="avatar">
+                        5
+                        <img src="http://localhost/dislike.png" height="22" width="22" alt="avatar">
+                    </span>
                                 </div>
                             </div>
                             <div class="col-sm-9 container-fluid">
@@ -116,7 +121,11 @@
                                     <img class="img-responsive" src="http://localhost/1.jpg" alt="avatar">
                                 </div>
                                 <div>
-                                    counter
+                        <span>
+                        <img src="http://localhost/like.png" height="22" width="22" alt="avatar">
+                        5
+                        <img src="http://localhost/dislike.png" height="22" width="22" alt="avatar">
+                    </span>
                                 </div>
                             </div>
                             <div class="col-sm-9 container-fluid">
@@ -167,7 +176,11 @@
                                     <img class="img-responsive" src="http://localhost/1.jpg" alt="avatar">
                                 </div>
                                 <div>
-                                    counter
+                                                        <span>
+                        <img src="http://localhost/like.png" height="22" width="22" alt="avatar">
+                        5
+                        <img src="http://localhost/dislike.png" height="22" width="22" alt="avatar">
+                    </span>
                                 </div>
                             </div>
                             <div class="col-sm-9 container-fluid">
@@ -218,7 +231,11 @@
                                     <img class="img-responsive" src="http://localhost/1.jpg" alt="avatar">
                                 </div>
                                 <div>
-                                    counter
+                                                        <span>
+                        <img src="http://localhost/like.png" height="22" width="22" alt="avatar">
+                        5
+                        <img src="http://localhost/dislike.png" height="22" width="22" alt="avatar">
+                    </span>
                                 </div>
                             </div>
                             <div class="col-sm-9 container-fluid">
@@ -273,13 +290,15 @@
             <div class="row">
                 <nav>
                     <ul class="pagination">
-                        <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                        <li class="disabled"><a href="#" aria-label="Previous"><span
+                                aria-hidden="true">&laquo;</span></a></li>
                         <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
                         <li class="disabled"><a href="#">2 <span class="sr-only"></span></a></li>
                         <li class="disabled"><a href="#">3 <span class="sr-only"></span></a></li>
                         <li class="disabled"><a href="#">4 <span class="sr-only"></span></a></li>
                         <li class="disabled"><a href="#">5 <span class="sr-only"></span></a></li>
-                        <li class="disabled"><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                        <li class="disabled"><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+                        </li>
                     </ul>
                 </nav>
             </div>
