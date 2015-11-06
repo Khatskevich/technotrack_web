@@ -1,125 +1,30 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-
-    <title>Registration Template for Bootstrap</title>
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-</head>
-
-<body>
-
-<nav class="navbar navbar-default ">
-    <div class="container">
-        <div class="navbar-header">
-            <!-- The mobile navbar-toggle button can be safely removed since you do not need it in a non-responsive implementation -->
-            <a class="navbar-brand" href="#">AskPupkin</a>
-        </div>
-            <form class="navbar-form navbar-left" role="search">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Log in</a></li>
-                <li><a href="#">Register</a></li>
-            </ul>
-        </div><!--/.nav-collapse -->
-    </div>
-</nav>
-
-
-    <div class="container">
-
-
-        <div class="row">
-
-            <div class="col-sm-9 blog-main">
-
-                <form class="form-horizontal">
+{% extends "base.html" %}
+{% block content %}
+                <form class="form-horizontal" action="" method="post">
+                    {% csrf_token %}
                     <h2 class="form-signin-heading">Log In</h2>
                     <div class="alert alert-danger">
                         Sory, wrong password!
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputLogin1" class="col-sm-2 control-label">Login</label>
+                        <label class="col-sm-2 control-label">Login</label>
                         <div class="col-sm-5">
-                            <input type="login" class="form-control" id="exampleInputLogin1" placeholder="Enter your login here">
+                            {{ form.username }}
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="exampleInputPassword1">Password</label>
+                        <label class="col-sm-2 control-label" >Password</label>
                         <div class="col-sm-5">
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                            {{ form.password }}
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-2">
-                            <button class="btn btn-lg btn-primary " type="submit">Log in!</button>
+                            <button class="btn btn-lg btn-primary " type="submit" alt="register">Log in!</button>
                         </div>
                     </div>
                     <div class="form-group">
                         <a href="#">Create a new account</a>
                     </div>
                 </form>
-
-            </div><!-- /.blog-main -->
-
-            <div class="col-sm-3 col-sm-offset-0 blog-sidebar">
-                <div class="sidebar-module">
-                    <h4>Popular tags</h4>
-                    <a class="js-nav trend-name" dir="ltr" href="/hashtag/totliv?src=tren" data-query-source="trend_click">SQL</a>
-                    <a class="js-nav trend-name" dir="ltr" href="/hashtag/totliv?src=tren" data-query-source="trend_click">Python</a>
-                    <a class="js-nav trend-name" dir="ltr" href="/hashtag/totliv?src=tren" data-query-source="trend_click">Django</a>
-                    <a class="js-nav trend-name" dir="ltr" href="/hashtag/totliv?src=tren" data-query-source="trend_click">Technotrack</a>
-                    <a class="js-nav trend-name" dir="ltr" href="/hashtag/totliv?src=tren" data-query-source="trend_click">Java</a>
-                    <a class="js-nav trend-name" dir="ltr" href="/hashtag/totliv?src=tren" data-query-source="trend_click">Nginx</a>
-                    <a class="js-nav trend-name" dir="ltr" href="/hashtag/totliv?src=tren" data-query-source="trend_click">gunicorn</a>
-                    <a class="js-nav trend-name" dir="ltr" href="/hashtag/totliv?src=tren" data-query-source="trend_click">CSS</a>
-                    <a class="js-nav trend-name" dir="ltr" href="/hashtag/totliv?src=tren" data-query-source="trend_click">Bootstrap</a>
-                    <a class="js-nav trend-name" dir="ltr" href="/hashtag/totliv?src=tren" data-query-source="trend_click">Python</a>
-                    <a class="js-nav trend-name" dir="ltr" href="/hashtag/totliv?src=tren" data-query-source="trend_click">C++</a>
-                    <a class="js-nav trend-name" dir="ltr" href="/hashtag/totliv?src=tren" data-query-source="trend_click">Купить молоко</a>
-                      <div class="sidebar-module">
-                        <h4>Best members</h4>
-                        <ol class="list-unstyled">
-                            <li><a href="#">Valera</a></li>
-                            <li><a href="#">Katya</a></li>
-                            <li><a href="#">Sasha</a></li>
-                            <li><a href="#">Lera</a></li>
-                            <li><a href="#">Koba</a></li>
-                            <li><a href="#">Polopo</a></li>
-                        </ol>
-                    </div>
-                    <div class="sidebar-module">
-                        <h4>{temp}</h4>
-                        <ol class="list-unstyled">
-                            <li><a href="/search/">search</a></li>
-                            <li><a href="/question/">question</a></li>
-                            <li><a href="/new_question/">new_question</a></li>
-                            <li><a href="/settings/">settings</a></li>
-                            <li><a href="/login/">login</a></li>
-                            <li><a href="/registration/">registration</a></li>
-                        </ol>
-                    </div>
-                </div><!-- /.blog-sidebar -->
-
-
-        </div><!-- /.row -->
-
-    </div><!-- /.container -->
-
-
-
-</body>
-</html>
+{% endblock %}

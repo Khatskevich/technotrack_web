@@ -1,29 +1,30 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-def index( request):
-    static_index_file = open(mode='r',name="technotrack_web/index.html")
-    return HttpResponse( static_index_file.read() )
+from django.views.generic import TemplateView
 
-def question( request):
-    static_index_file = open(mode='r',name="technotrack_web/question.html")
-    return HttpResponse( static_index_file.read() )
+class Search(TemplateView):
+    template_name = "search.html"
 
-def new_question( request):
-    static_index_file = open(mode='r',name="technotrack_web/new_question.html")
-    return HttpResponse( static_index_file.read() )
+class Registration(TemplateView):
+    template_name = "registration.html"
 
-def settings( request):
-    static_index_file = open(mode='r',name="technotrack_web/settings.html")
-    return HttpResponse( static_index_file.read() )
+class Login(TemplateView):
+    template_name = "login.html"
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(Login, self).get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        context['login_error'] = "Hay there!"
+        return context
 
-def login( request):
-    static_index_file = open(mode='r',name="technotrack_web/login.html")
-    return HttpResponse( static_index_file.read() )
+class Settings(TemplateView):
+    template_name = "settings.html"
 
-def registration( request):
-    static_index_file = open(mode='r',name="technotrack_web/registration.html")
-    return HttpResponse( static_index_file.read() )
+class NewQuestion(TemplateView):
+    template_name = "new_question.html"
 
-def search( request):
-    static_index_file = open(mode='r',name="technotrack_web/search.html")
-    return HttpResponse( static_index_file.read() )
+class Question(TemplateView):
+    template_name = "question.html"
+
+class Index(TemplateView):
+    template_name = "index.html"
