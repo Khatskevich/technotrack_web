@@ -6,13 +6,13 @@
     <title>Registration Template for Bootstrap</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/collected_static/bootstrap/3.3.5/css/bootstrap.min.css">
 
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/collected_static/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -83,12 +83,11 @@
                 <div class="sidebar-module">
                     <h4>{temp}</h4>
                     <ol class="list-unstyled">
-                        <li><a href="/search/">search</a></li>
-                        <li><a href="/question/">question</a></li>
-                        <li><a href="/new_question/">new_question</a></li>
-                        <li><a href="/settings/">settings</a></li>
-                        <li><a href="/login/">login</a></li>
-                        <li><a href="/registration/">registration</a></li>
+                        <li><a href="{% url 'search' %}" >search</a></li>
+                        <li><a href="{% url 'new_question' %}">new_question</a></li>
+                        <li><a href="{% url 'settings' %}">settings</a></li>
+                        <li><a href="{% url 'login' %}">login</a></li>
+                        <li><a href="{% url 'registration' %}">registration</a></li>
                     </ol>
                 </div>
             </div>

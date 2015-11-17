@@ -29,7 +29,7 @@ urlpatterns = [
     url(r'^template/', templates.Index.as_view()),
     url(r'^hw/', hello_world_view.index, name='index'),
     url(r'^$', login_required(QuestionsAll.as_view()), name="search"),
-    url(r'^question/', views.Question.as_view(), name='question'),
+    url(r'^question/(?P<pk>\d+)/$', views.Question.as_view(), name='question'),
     url(r'^new_question/', views.NewQuestion.as_view(), name='new_question'),
     url(r'^settings/', views.Settings.as_view(), name='settings'),
     #url(r'^login/', views.Login.as_view(), name='login'),

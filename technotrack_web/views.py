@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
+from answer.models import Answer
+from questions import models
+
 
 class Search(TemplateView):
     template_name = "search.html"
@@ -23,8 +26,22 @@ class Settings(TemplateView):
 class NewQuestion(TemplateView):
     template_name = "new_question.html"
 
-class Question(TemplateView):
+class Question(ListView):
+    def get_queryset(self):
+        return Answer.objects.filter(question__pk=self.kwargs['pk'])
+    model = Answer
+    paginate_by = '15'
+    context_object_name = "answers"
     template_name = "question.html"
+
+    def get_context_data(self):
+        context = super(Question, self).get_context_data()
+        context['question']=models.Question.objects.get(pk=self.kwargs['pk'])
+        return context
+
+
+
+
 
 class Index(TemplateView):
     template_name = "index.html"

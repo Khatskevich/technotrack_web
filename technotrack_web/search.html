@@ -9,6 +9,9 @@
                         <input type="text" class="form-control" placeholder="moon is real">
                         <button type="submit" class="btn btn-default">Submit</button>
                     </div>
+                    <a class="js-nav trend-name" dir="ltr" href="http://localhost/{{question.search}}?sort=date" >sort by date</a>
+                    <a class="js-nav trend-name" dir="ltr" href="http://localhost/{{question.search}}?sort=title" >sort by title</a>
+                    <a class="js-nav trend-name" dir="ltr" href="http://localhost/{{question.search}}?sort=likes" >sort by likes</a>
 
                 </form>
             </div>
@@ -24,7 +27,7 @@
                                 <div>
                                     <h2>
                                     </h2>
-                                    <img class="img-responsive" src="http://localhost/1.jpg" alt="avatar">
+                                    <img class="img-responsive" src="http://localhost/{{question.image_url}}" alt="avatar">
                                 </div>
                                 <div>
                                                         <span>
@@ -35,9 +38,9 @@
                                 </div>
                             </div>
                             <div class="col-sm-9 container-fluid">
-                                <h2>
-                                    {{question.title}}
-                                </h2>
+                                <h4>
+                                    <a href="{% url 'question' pk=question.pk %}">{{question.title}}</a>
+                                </h4>
 
                                 <p>
                                     {{question.text}}
