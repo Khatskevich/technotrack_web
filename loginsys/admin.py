@@ -1,5 +1,11 @@
 from django.contrib import admin
-from loginsys.models import MyUser
+from loginsys.models import User
 
-admin.site.register(MyUser)
+
+class UserAdmin(admin.ModelAdmin):
+    list_display = ( 'username', 'first_name', 'last_name', 'email','registration_time','last_login')
+
+
+admin.site.register(User, UserAdmin)
+
 # Register your models here.

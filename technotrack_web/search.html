@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-            <div class="row">
+            <div class="row" id="test_id">
                 <form class="navbar-form" role="form">
                     <h2>Search: moon is real</h2>
 
@@ -27,12 +27,14 @@
                                 <div>
                                     <h2>
                                     </h2>
-                                    <img class="img-responsive" src="http://localhost/{{question.image_url}}" alt="avatar">
+                                    <img class="img-responsive" src="http://localhost/{{question.user.image_url}}" alt="avatar">
                                 </div>
                                 <div>
                                                         <span>
-                        <img src="http://localhost/like.png" height="22" width="22" alt="avatar">
-                        5
+                        <img src="http://localhost/like.png" height="22" width="22" alt="avatar" onclick="likeQuestion( {{ question.pk }} )">
+                                                  <span id="likes_count{{ question.pk }}">
+                        {{question.likequestion_set.count}}
+                                                      </span>
                         <img src="http://localhost/dislike.png" height="22" width="22" alt="avatar">
                     </span>
                                 </div>
@@ -47,8 +49,8 @@
                                 </p>
 
                                 <p>
-                                    <a class="js-nav trend-name" dir="ltr" href="/hashtag/totliv?src=tren"
-                                       data-query-source="trend_click">answer(5)</a>
+                                    <a class="js-nav trend-name" dir="ltr" href="{% url 'question' pk=question.pk %}"
+                                       data-query-source="trend_click">{{question.answer_set.count}} answers</a>
                                     Tags:
                                     <a class="js-nav trend-name" dir="ltr" href="/hashtag/totliv?src=tren"
                                        data-query-source="trend_click">Django</a>
@@ -84,5 +86,25 @@
                     </ul>
                 </nav>
             </div>
+
+<script>
+function likeQuestion( question_id2) {
+    document.getElementById("likes_count".concat(question_id2 ) ).innerHTML =0;
+    $.ajax({
+        url:  'http://localhost/like_question',
+        type: 'POST',
+        data: "{ user_id: {{ user_id }}, question_id: question_id2 }",
+    }).success(function(data) {
+        if (data.status == 'ok') {
+            document.getElementById("likes_count".concat(question_id2 ) ).innerHTML "asdasd";
+        }
+    }).error(function() {
+        document.getElementById("likes_count".concat(question_id2 ) ).innerHTML "45";
+    })
+    .always(function() {
+    document.getElementById("likes_count".concat(question_id2 ) ).innerHTML "45";
+});
+}
+</script>
 
 {% endblock %}

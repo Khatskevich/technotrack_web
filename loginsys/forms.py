@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.forms import ModelForm
-from loginsys.models import MyUser
+from loginsys.models import User
 from django.contrib.auth import authenticate, login, logout
 
 class RegistrationForm(ModelForm):
@@ -9,15 +9,19 @@ class RegistrationForm(ModelForm):
     username.widget.attrs.update( {'type' : "login", 'class':"form-control", 'placeholder':"Login"})
     email = forms.EmailField( label=(u'Email Address'),)
     email.widget.attrs.update( {'type' : "email", 'class':"form-control", 'placeholder':"Email"})
-    nickName = forms.CharField( label=(u'Nickname'),)
-    nickName.widget.attrs.update( {'type' : "NickName", 'class':"form-control",  'placeholder':"NickName"})
+    nick_name = forms.CharField( label=(u'Nickname'),)
+    nick_name.widget.attrs.update( {'type' : "NickName", 'class':"form-control",  'placeholder':"NickName"})
+    first_name = forms.CharField( label=(u'First Name'),)
+    first_name.widget.attrs.update( {'type' : "FirstName", 'class':"form-control",  'placeholder':"First Name"})
+    last_name = forms.CharField( label=(u'Last Name'),)
+    last_name.widget.attrs.update( {'type' : "LastName", 'class':"form-control",  'placeholder':"Last Name"})
     password = forms.CharField( label=(u'Password'), widget=forms.PasswordInput(render_value=False))
     password.widget.attrs.update( {'type' : "Password", 'class':"form-control",  'placeholder':"Password"})
     password1 = forms.CharField( label=(u'Verify Passwore'), widget=forms.PasswordInput(render_value=False))
     password1.widget.attrs.update( {'type' : "Retype password", 'class':"form-control", 'placeholder':"Retype password"})
 
     class Meta:
-        model = MyUser
+        model = User
         exclude = ('user',)
 
 
@@ -40,5 +44,4 @@ class LoginForm(forms.Form):
     password = forms.CharField( label=(u'Password'), widget=forms.PasswordInput(render_value=False))
     password.widget.attrs.update( {'type' : "Password", 'class':"form-control",  'placeholder':"Password"})
     class Meta:
-        model = MyUser
-        exclude = ('user',)
+        model = User

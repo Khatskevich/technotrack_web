@@ -1,15 +1,72 @@
 from django.db import models
 from django.db.models.signals import post_save
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
+from django.utils.translation import ugettext_lazy as _
+from django.core.mail import send_mail
+from django.utils import timezone
+
 # Create your models here.
 
-class MyUser( models.Model):
-    user = models.OneToOneField(User)
-    nickName = models.CharField(max_length=50)
 
-    def __unicode__(self):
-        return  self.nickName
 
-def create_MyUser_with_User( sender, instance, **kwargs):
-    myUser, new = MyUser.objects.get_or_create(user=instance)
-post_save.connect( create_MyUser_with_User, User)
+class UserManager(BaseUserManager):
+    def _create_user(self, username, email, password, first_name, last_name, nick_name, is_staff,
+                     is_superuser, **extra_fields):
+        now = timezone.now()
+        if not username:
+            raise ValueError(_('The given username must be set'))
+        email = self.normalize_email(email)
+        user = self.model(username=username, email=email, first_name=first_name, last_name=last_name, nick_name=nick_name,
+                          is_staff=is_staff, is_active=False,
+                          is_superuser=is_superuser, last_login=now,
+                          registration_time=now, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_user(self, username, email=None, password=None, first_name=None, last_name=None,nick_name=None,
+                    **extra_fields):
+        return self._create_user(username, email, password, first_name, last_name , nick_name, False, False,
+                                 **extra_fields)
+
+    def create_superuser(self, username, email, password, first_name, last_name,nick_name=None, **extra_fields):
+        user = self._create_user(username, email, password, first_name, last_name, nick_name, True, True,
+                                 **extra_fields)
+        user.is_active = True
+        user.save(using=self._db)
+        return user
+
+class User(AbstractBaseUser, PermissionsMixin):
+    username = models.CharField(_('username'), max_length=30, unique=True,
+                             help_text=_('username'),
+                             #validators=[ validators.RegexValidator(re.compile('^[\w.@+-]+$'), _('Enter a valid phone.'), _('invalid'))   ]
+                             )
+    email = models.EmailField(_('email address'), max_length=255)
+    first_name = models.CharField(_('first name'), max_length=30)
+    last_name = models.CharField(_('last name'), max_length=30)
+    nick_name = models.CharField(_('nick name'),max_length=50)
+    is_staff = models.BooleanField(_('staff status'), default=False,
+                                   help_text=_('Designates whether the user can log into this admin '
+                                               'site.'))
+    is_active = models.BooleanField(_('active'), default=False,
+                                    help_text=_(
+                                        'Designates whether this user should be treated as active. Unselect this instead of deleting accounts.'))
+    registration_time = models.DateTimeField(auto_now=True, editable=True)
+    image_url = models.CharField(_('image_url'),max_length=50, default="uploads/avatar_photos/no_photo.png", blank=True)
+    objects = UserManager()
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['email', 'nick_name', 'first_name', 'last_name' ]
+
+    class Meta:
+        verbose_name = _('user')
+        verbose_name_plural = _('users')
+
+    def get_full_name(self):
+        full_name = '%s %s' % (self.first_name, self.last_name)
+        return full_name.strip()
+
+    def get_short_name(self):
+        return self.first_name
+
+    def email_user(self, subject, message, from_email=None):
+        send_mail(subject, message, from_email, [self.email])

@@ -3,7 +3,7 @@
 
             <div class="row">
                 <div class="col-sm-3 container-fluid">
-                        <img class="img-responsive" src="http://localhost/1.jpg" alt="avatar">
+                        <img class="img-responsive" src="http://localhost/{{question.user.image_url}}" alt="avatar">
                     <span>
                         <img  src="http://localhost/like.png"  height="22" width="22" alt="avatar">
                         5
@@ -40,7 +40,7 @@
                         <div>
                             <h2>
                             </h2>
-                            <img class="img-responsive" src="http://localhost/1.jpg" alt="avatar">
+                            <img class="img-responsive" src="http://localhost/{{ answer.user.image_url}}" alt="avatar">
                         </div>
                         <div>
                             counter
@@ -48,18 +48,19 @@
                     </div>
                     <div class="col-sm-9 container-fluid">
                         <h2>
+                            <a name="answer{{answer.pk}}"/>
                             {{answer.title}}
                         </h2>
 
                         <p>
                             {{answer.text}}
-
                         </p>
 
                         <input type="checkbox"> Correct
                     </div>
+                    </td>
                 </tr>
-                </td>
+
                 {% endfor %}
 
                 </tbody>
@@ -70,13 +71,35 @@
             </div>
 
             <div class="row">
-                <div class="form-group">
-                            <textarea class="form-control" rows="5" id="exampleInputText1"
-                                      placeholder="Text"></textarea>
-                </div>
-                <div class="form-group">
-                        <button class="btn btn-lg btn-primary " type="submit">Answer!</button>
-                </div>
+
+                {% load widget_tweaks %}
+                <form class="form-horizontal">
+                    {% csrf_token %}
+                    <h2 class="form-signin-heading">Answer this question</h2>
+                    {% for field in form %}
+                    {%if field.errors %}
+                    <div class="alert alert-danger">
+                        {{ field.errors }}
+                    </div>
+                    {%endif%}
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{{ field.label_tag }}</label>
+                        <div class="col-sm-9 container-fluid">
+                            {{ field  |add_class:"form-control" }}
+                        </div>
+                    </div>
+
+                    {% endfor %}
+                    <div class="form-group">
+                        <div class="col-sm-2">
+                            <button class="btn btn-lg btn-primary " formmethod="post" type="submit">Answer!</button>
+                        </div>
+                    </div>
                 </form>
+
+
+
             </div>
+
+
 {% endblock %}

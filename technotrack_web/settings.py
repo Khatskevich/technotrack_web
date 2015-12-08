@@ -37,10 +37,12 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'widget_tweaks',
     'questions',
     'loginsys',
     'answer',
     'tag',
+    'likes',
 )
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -103,6 +105,12 @@ USE_L10N = True
 
 USE_TZ = True
 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'avkhatskevich@gmail.com'
+EMAIL_HOST_PASSWORD = 'bortongo2g'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
@@ -110,3 +118,4 @@ USE_TZ = True
 STATIC_URL = '/collected_static/'
 STATIC_ROOT = '/var/www/technotrack_web/collected_static/'
 STATICFILES_DIRS = ('/var/www/technotrack_web/src/static/', )
+AUTH_USER_MODEL = 'loginsys.User'

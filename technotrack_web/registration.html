@@ -5,7 +5,7 @@
                     <h2 class="form-signin-heading">Registration</h2>
                     {% if form.errors %}
                     <div class="alert alert-danger">
-                        Sory, this email adderss allready registered!
+                        {{ form.errors }}
                     </div>
                     {% endif %}
                     <div class="form-group">
@@ -24,7 +24,19 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">NickName</label>
                         <div class="col-sm-5">
-                            {{ form.nickName }}
+                            {{ form.nick_name }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">First name</label>
+                        <div class="col-sm-5">
+                            {{ form.first_name }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Last name</label>
+                        <div class="col-sm-5">
+                            {{ form.last_name }}
                         </div>
                     </div>
                     <div class="form-group">

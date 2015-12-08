@@ -2,6 +2,7 @@
 from random import random, randint
 from django.core.management import BaseCommand
 from answer.models import Answer
+from loginsys.models import User
 from questions.models import Question
 
 titles = [
@@ -73,8 +74,8 @@ class Command(BaseCommand):
             question.likes = 0
             number = randint(0,len(questions)-1)
             question.text = questions[ number ]
-            number = randint(0,len(images)-1)
-            question.image_url = images[ number]
+            number = randint(0,User.objects.count()-1)
+            question.user = User.objects.all()[number]
             question.save()
             for j in range(0,randint(0,5)):
                 answer = Answer()
@@ -83,5 +84,7 @@ class Command(BaseCommand):
                 number = randint(0,len(titles)-1)
                 answer.title = titles[ number ]
                 answer.question = question
+                number = randint(0,User.objects.count()-1)
+                answer.user = User.objects.all()[number]
                 answer.save()
 

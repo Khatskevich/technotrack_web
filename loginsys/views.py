@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from django.contrib.auth.models import User
+from loginsys.models import User
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from loginsys.forms import RegistrationForm, LoginForm
@@ -13,11 +13,11 @@ def MyUserRegistration(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            user = User.objects.create_user(username=form.cleaned_data['username'], email = form.cleaned_data['email'], password = form.cleaned_data['password'])
+            user = User.objects.create_user(username=form.cleaned_data['username'], email = form.cleaned_data['email'], password = form.cleaned_data['password'],
+                                            last_name=form.cleaned_data['last_name'],
+                                            first_name=form.cleaned_data['first_name'],
+                                            nick_name=form.cleaned_data['nick_name'])
             user.save()
-            myUser = user.myuser
-            myUser.nickName = form.cleaned_data['username']
-            myUser.save()
             return HttpResponseRedirect('/search/')
         else:
             return render_to_response('registration.html', {'form': form}, context_instance=RequestContext(request))
